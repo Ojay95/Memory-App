@@ -1,0 +1,110 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(./assets/img/bg-image.svg);
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    margin-top: 30px;
+    background-color: white;
+    height: 60px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add_post input,
+textarea {
+    width: 100%;
+    border-radius: 5px;
+    margin: 5px;
+    align-items: center;
+}
+
+.add_post button {
+    width: 100%;
+    border-radius: 5px;
+    margin: 5px;
+    align-items: center;
+}
+
+.clear {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.submit {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+
+.add_post input,
+button {
+    height: 40px;
+}
+
+.add_post {
+    width: 30%;
+    margin-top: 20px;
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 7px;
+    height: auto;
+    align-items: flex-start;
+}
+
+.add_post h3 {
+    text-align: center;
+}
+.add_post {
+    width: 30%;
+}
+
+.posts {
+    width: 70%;
+}
+
+.posts .edit {
+    font-weight: bold;
+}
+
+.post_action {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.post_action button {
+    border: none;
+    color: blue;
+    background-color: transparent;
+}
+
+.desc {
+    background-color: white;
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+}
+
+.post_image {
+    margin-top: 20px;
+}
+
+.post_image {
+    position: relative;
+    border-radius: 15px 15px 0 0;
+}
