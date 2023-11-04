@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     posts: [],
+    post: [],
 };
 
 export const postSlice = createSlice({
@@ -10,12 +11,15 @@ export const postSlice = createSlice({
     reducers: {
         //actions
         create_data: function (state, action) {
-            return { ...state, posts: { ...action.payload } };
+            return { ...state, posts: [...action.payload] };
+        },
+        include_data: function (state, action) {
+            return { ...state, posts: [...state.posts, action.payload] };
         },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const {} = postSlice.actions;
+export const { create_data, include_data } = postSlice.actions;
 
 export default postSlice.reducer;

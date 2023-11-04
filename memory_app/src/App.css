@@ -17,6 +17,7 @@ body {
     background-color: white;
     height: 60px;
     border-radius: 7px;
+    border: solid 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,4 +108,10 @@ button {
 .post_image {
     position: relative;
     border-radius: 15px 15px 0 0;
+}
+
+.footer {
+    width: auto;
+    height: 50px;
+    background-color: crimson;
 }

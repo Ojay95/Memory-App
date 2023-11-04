@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const app = express();
 
 //this data allow us to grab a data sent from the front
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: "30mb" }));
+app.use(express.json({ extended: true, limit: "30mb" }));
 
 //this allows cross origin  requests
 //localhost: 3000 t0 5000
@@ -22,11 +22,16 @@ const postSchema = new mongoose.Schema({
     form_title: String,
     form_message: String,
     form_tag: String,
+    form_selected_file: String,
+    form_created_at: {
+        type: Date,
+        default: new Date(),
+    },
 });
 
 const Model = mongoose.model("Posts_model", postSchema);
 
-app.post("/post/creat", async (req, res) => {
+app.post("/post/create", async (req, res) => {
     try {
         const post = await Model.create(req.body);
 
@@ -42,6 +47,8 @@ app.get("/posts/get_data", async (req, res) => {
     try {
         const posts = await Model.find();
 
+        console.log(posts);
+
         res.json(posts);
     } catch (error) {
         console.log(error);
@@ -49,8 +56,16 @@ app.get("/posts/get_data", async (req, res) => {
 });
 
 // POST method route
-app.post("/posts/create", (req, res) => {
-    res.send("POST request to the homepage");
+app.post("/posts/create", async (req, res) => {
+    try {
+        const post = await Model.create(req.body);
+
+        console.log(post);
+
+        res.json(post);
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 const PORT = 5000;

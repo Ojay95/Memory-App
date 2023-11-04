@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-
+import FileBase64 from "react-file-base64";
+import { include_data } from "../features/post/postSlice";
+import { useDispatch } from "react-redux";
 
 const AddPost = () => {
     const [creator, setCreator] = useState("");
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [message, setMessage] = useState("");
-    const [file, setFile] = 
+    const [file, setFile] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,17 +26,18 @@ const AddPost = () => {
             form_title: title,
             form_message: message,
             form_tag: tag,
+            form_selected_file: file,
         };
 
         axios
             .post("http://localhost:5000/posts/create", formdata)
-            .then((response) => console.log(response)) //output successful message
+            .then((response) => dispatch(include_data(response.data))) //output successful message
             .catch((error) => console.log(error)); // output unsuccessful message
     };
 
     return (
         <div className="add_post">
-            <h3>Create Your Memory</h3>
+            <h3 style={{ color: "purple" }}>Create Your Memory</h3>
             <form onSubmit={handleSubmit}>
                 <div className="creator">
                     <input
@@ -65,9 +68,7 @@ const AddPost = () => {
                     <input type="text" placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)} />
                 </div>
 
-                <div className="file">
-                    <input type="file" />
-                </div>
+                <FileBase64 multiple={false} onDone={({ base64 }) => setFile(base64)} />
 
                 <div className="button">
                     <button type="submit" className="submit">
